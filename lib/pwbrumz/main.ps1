@@ -58,10 +58,10 @@ if ($PsBoundParameters.ContainsKey('serverName') -and $PsBoundParameters.Contain
     Write-Output("You can't use file and server at the same time. You should use once only")
 }
 elseif($PsBoundParameters.ContainsKey('serverName') -and $PsBoundParameters.ContainsKey('moduleName')){
-    $r = server_once -serverName $serverName -moduleName $moduleName
+    $r = server_once -serverName $serverName -moduleName "$moduleName.ps1"
     Write-Output $r
 }elseif ($PsBoundParameters.ContainsKey('moduleName') -and $PsBoundParameters.ContainsKey('file')){
-    $r = server_multiple -file "$file" -moduleName "$moduleName"
+    $r = server_multiple -file "$file" -moduleName "$moduleName.ps1"
     Write-Output $r
     
 }

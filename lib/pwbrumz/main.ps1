@@ -11,14 +11,17 @@ param(
     [alias("f")]
     [string]$file,
 
+    #Get documentation about specific module
     [alias("d")]
     [string]$doc,
 
     [alias("o")]
     [switch]$output,
 
+    #List all modules
     [switch]$modules,
 
+    #Get help
     [switch]$help
 )
 

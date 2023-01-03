@@ -45,7 +45,7 @@ function server_once([string]$serverName, [string]$moduleName, [string]$command)
 
 }
 
-function server_multiple([string]$file, [string]$moduleName){
+function server_multiple([string]$file, [string]$moduleName, [string]$command){
     # Read the list of servers from a text file
     $servers = Get-Content "config/$file"
     $cred = Get-Credential
@@ -53,10 +53,16 @@ function server_multiple([string]$file, [string]$moduleName){
     # Loop through the list of servers and run the Invoke-Command cmdlet on each server
     $servers | ForEach-Object {
         # Specify the credentials to use for authentication
-        
-
+        if ($comSwitch -eq 1){
+            Invoke-Command -ComputerName "$serverName" -Authentication Kerberos -Credential $cred -ScriptBlock { $command }
+        }else{
+            
         # Run the script on the server
         Invoke-Command -ComputerName "$_" -Authentication Kerberos -Credential $cred -FilePath "modules/$moduleName"
+
+        }
+    
+
     }
 }
 

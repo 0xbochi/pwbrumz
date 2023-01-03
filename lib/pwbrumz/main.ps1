@@ -71,7 +71,7 @@ function server_multiple([string]$file, [string]$moduleName, [string]$command){
 if($modules){
     Write-Host "Use the command -doc xor -d followed by the name of the module to get more informations"
     Write-Host "Example :  -d hello_world"
-    Write-Host "Here are all the modules you loaded : "
+    Write-Host "Here are all loaded modules : "
     module_lister
 }
 

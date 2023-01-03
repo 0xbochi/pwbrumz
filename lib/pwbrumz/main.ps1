@@ -5,7 +5,9 @@ param(
     [alias("m")]
     [string]$moduleName,
 
-    
+    [alias("c")]
+    [string]$command = "Default",
+
     [alias("f")]
     [string]$file,
 
@@ -19,7 +21,7 @@ param(
 
 Import-Module .\parsing\parsing.ps1
 
-function server_once([string]$serverName, [string]$moduleName){
+function server_once([string]$serverName, [string]$moduleName, [string]$command){
 
     $cred = Get-Credential
     Invoke-Command -ComputerName "$serverName" -Authentication Kerberos -Credential $cred -FilePath "modules/$moduleName"

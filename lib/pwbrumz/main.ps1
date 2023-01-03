@@ -14,6 +14,9 @@ param(
     [alias("d")]
     [string]$doc,
 
+    [alias("o")]
+    [switch]$output,
+
     [switch]$modules,
 
     [switch]$help

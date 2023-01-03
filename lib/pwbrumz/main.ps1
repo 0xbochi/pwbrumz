@@ -26,11 +26,22 @@ param(
 )
 
 Import-Module .\parsing\parsing.ps1
+[bool] $comSwitch = 0
+if($command -ne "Default"){
+    $comSwitch = 1   
+}
 
 function server_once([string]$serverName, [string]$moduleName, [string]$command){
 
     $cred = Get-Credential
-    Invoke-Command -ComputerName "$serverName" -Authentication Kerberos -Credential $cred -FilePath "modules/$moduleName"
+
+    if ($comSwitch -eq 1){
+        Invoke-Command -ComputerName "$serverName" -Authentication Kerberos -Credential $cred -ScriptBlock { $command }
+
+
+    }else{
+        Invoke-Command -ComputerName "$serverName" -Authentication Kerberos -Credential $cred -FilePath "modules/$moduleName"
+    }
 
 }
 

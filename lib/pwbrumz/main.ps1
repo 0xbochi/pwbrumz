@@ -25,7 +25,7 @@ param(
     [switch]$help,
 
     [alias("v")]
-    [switch]$version,
+    [switch]$version
 
 )
 

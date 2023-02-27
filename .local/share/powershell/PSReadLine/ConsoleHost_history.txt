@@ -1,0 +1,11 @@
+ls
+cd /root/
+ls
+./sign.ps1
+ls
+cd ./lib/pwbrumz/
+ls
+./main.ps1
+./main.ps1 --version
+./main.ps1 -v
+./main.ps1 -version

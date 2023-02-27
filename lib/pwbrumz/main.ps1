@@ -22,10 +22,15 @@ param(
     [switch]$modules,
 
     #Get help
-    [switch]$help
+    [switch]$help,
+
+    [alias("v")]
+    [switch]$version,
+
 )
 
 Import-Module .\parsing\parsing.ps1
+# this boolean is used to know if the user want to run a command or a module
 [bool] $comSwitch = 0
 if($command -ne "Default"){
     $comSwitch = 1   
@@ -67,7 +72,13 @@ function server_multiple([string]$file, [string]$moduleName, [string]$command){
 }
 
 
+if($version){
 
+    Write-Host "Version 0.1.0"
+}
+
+
+#List all modules
 if($modules){
     Write-Host "Use the command -doc xor -d followed by the name of the module to get more informations"
     Write-Host "Example :  -d hello_world"
@@ -75,9 +86,11 @@ if($modules){
     module_lister
 }
 
+#Get documentation about specific module
 if ($PsBoundParameters.ContainsKey('doc')){
     module_helper_reader -moduleName "$doc"
 }
+
 
 if ($PsBoundParameters.ContainsKey('serverName') -and $PsBoundParameters.ContainsKey('file')){
     Write-Output("You can't use file and server at the same time. You should use once only")

@@ -28,8 +28,14 @@ param(
     [switch]$version
 
 )
+try{
+    Import-Module .\parsing\parsing.ps1 -Force
+}catch{
+    Write-Error -Message "An error occurred: $($_.Exception.Message)"
+    Write-Error -Message "You should try to run the script with powershell.exe .\main.ps1"
+}
 
-Import-Module .\parsing\parsing.ps1
+
 # this boolean is used to know if the user want to run a command or a module
 [bool] $comSwitch = 0
 if($command -ne "Default"){

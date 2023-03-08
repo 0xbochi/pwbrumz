@@ -1,3 +1,3 @@
-#> This script with just echo Hello world
+#> This script will just echo Hello world
 
 echo "hello world"
